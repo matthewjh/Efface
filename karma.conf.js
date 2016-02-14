@@ -39,7 +39,8 @@ module.exports = function(config) {
     browsers: ['Chrome'],
 
     preprocessors: {
-      'src/**/*.ts': 'browserify'
+      'src/**/*.ts': 'browserify',
+      'test/**/*.ts': 'browserify'
     },
 
     browserify: {

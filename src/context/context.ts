@@ -1,6 +1,7 @@
+import {IContext} from './abstract';
 import {IPlugin} from '../plugins/facade';
 
-export class Context {
+export class Context implements IContext {
   private _plugins: IPlugin[];
 
   constructor(plugins: IPlugin[]) {
@@ -8,10 +9,14 @@ export class Context {
   }
 
   start() {
-    
+    this._plugins.forEach(p => {
+      p.onContextStart();
+    });
   }
 
   end() {
-
+    this._plugins.forEach(p => {
+      p.onContextEnd();
+    })
   }
 }

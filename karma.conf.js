@@ -9,7 +9,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/**/*.spec.ts'
+      'test/**/*.ts'
     ],
 
     // list of files to exclude

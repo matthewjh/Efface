@@ -7,11 +7,11 @@ interface IContextFactory {
 
 export class ContextStackRunner {
   private _createContext: IContextFactory;
-  private _stack: ContextStack;
+  private _stack: IContext[];
 
   constructor(createContext: IContextFactory) {
     this._createContext = createContext;
-    this._stack = new ContextStack();
+    this._stack = [];
   }
 
   start() {
@@ -22,7 +22,9 @@ export class ContextStackRunner {
   }
 
   end() {
-    this._stack.activeContext.end();
+    let activeContext = this._stack[this._stack.length - 1];
+
+    activeContext.end();
     this._stack.pop();
   }
 }

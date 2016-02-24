@@ -1,7 +1,13 @@
 import {difference} from 'lodash';
-import {IPlugin} from './abstract';
+import {IPlugin} from '../abstract';
 
-export class GlobalPropertiesPlugin implements IPlugin {
+function deleteProperties(keys: string[]) {
+  keys.forEach(k => {
+    delete global[k];
+  });
+}
+
+export class Plugin implements IPlugin {
   private _ownKeysAtStart: string[];
 
   onContextStart() {
@@ -12,12 +18,6 @@ export class GlobalPropertiesPlugin implements IPlugin {
     let ownKeysNow = Object.getOwnPropertyNames(global);
     let diff = difference(ownKeysNow, this._ownKeysAtStart);
     
-    this._deleteProperties(diff);
+    deleteProperties(diff);
   }
-
-  private _deleteProperties(keys: string[]) {
-    keys.forEach(k => {
-      delete global[k];
-    });
-  }
-}
+};

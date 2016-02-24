@@ -1,7 +1,8 @@
 import {IContext, Context} from './context/facade';
 import {
   IPlugin,
-  GlobalPropertiesPlugin
+  globalPropertiesPluginController,
+  asyncTasksPluginController
 } from './plugins/facade';
 
 export class DefaultContext implements IContext {
@@ -9,7 +10,8 @@ export class DefaultContext implements IContext {
   
   constructor() {
     let defaultPlugins: IPlugin[] = [
-      new GlobalPropertiesPlugin()
+      globalPropertiesPluginController.getNewPlugin(),
+      asyncTasksPluginController.getNewPlugin()
     ];
 
     this._context = new Context(defaultPlugins);

@@ -1,4 +1,3 @@
-import {ContextStack} from '../stack';
 import {IContext} from '../abstract';
 
 interface IContextFactory {
